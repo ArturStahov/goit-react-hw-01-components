@@ -1,19 +1,4 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
-
-const generateRandomColor = () => {
-  const getRandomIntInclusive = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-  const randomColor = [0, 0, 0].map(elem => {
-    elem = getRandomIntInclusive(0, 255);
-    return elem;
-  });
-  return `rgb(${randomColor[0]}, ${randomColor[1]}, ${randomColor[2]})`;
-};
 
 const FriendListBlock = styled.ul`
   max-width: 600px;
@@ -61,23 +46,4 @@ const FriendsName = styled.p`
   color: #000000;
 `;
 
-export default function FriendList({ friends }) {
-  return (
-    <FriendListBlock>
-      {friends.map(item => (
-        <FriendsItem
-          key={item.id}
-          style={{ backgroundColor: generateRandomColor() }}
-        >
-          <IsActiveIndicator isOnl={item.isOnline}></IsActiveIndicator>
-          <FriendsName>{item.name}</FriendsName>
-          <FriendsAvatar src={item.avatar} alt={item.name} width="48" />
-        </FriendsItem>
-      ))}
-    </FriendListBlock>
-  );
-}
-
-FriendList.propTypes = {
-  friends: PropTypes.array.isRequired,
-};
+export { FriendListBlock, FriendsItem, IsActiveIndicator, FriendsAvatar, FriendsName }

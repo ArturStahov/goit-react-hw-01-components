@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const StatisticsCard = styled.section`
@@ -61,40 +59,4 @@ const StatQuantity = styled.span`
   color: #000000;
 `;
 
-const generateRandomColor = () => {
-  const getRandomIntInclusive = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  };
-  const randomColor = [0, 0, 0].map(elem => {
-    elem = getRandomIntInclusive(0, 255);
-    return elem;
-  });
-
-  return `rgb(${randomColor[0]}, ${randomColor[1]}, ${randomColor[2]})`;
-}
-
-export default function Statistics({ title, stats }) {
-  const widthStatsItem = `${stats.length > 0 && (100 / stats.length)}%`;
-
-  return (
-    <StatisticsCard>
-      {title && (<Title>{title}</Title>)}
-
-      <StatBlock>
-        {stats.map(item => (
-          <StatItem key={item.id} style={{ backgroundColor: generateRandomColor() }} width={widthStatsItem} >
-            <StatLabel>{item.label}</StatLabel>
-            <StatQuantity>{item.percentage} &#37;</StatQuantity>
-          </StatItem>
-        ))}
-      </StatBlock>
-    </StatisticsCard>
-  )
-}
-
-Statistics.propTypes = {
-  title: PropTypes.string,
-  stats: PropTypes.array.isRequired,
-}
+export { StatisticsCard, Title, StatBlock, StatItem, StatLabel, StatQuantity }
